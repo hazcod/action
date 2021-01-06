@@ -71,6 +71,7 @@ async function main () {
       return
     }
     const generatedChangelog = (await fs.readFile(changelogFile)).toString('utf8')
+    if (core.getInput('dry')) {  core.info(`using dry mode`); } else {  core.info(`not using dry mode'); }
     const versionFilename = (core.getInput('dry')) ? '.version-unreleased' : '.version'
     const version = (await fs.readFile(versionFilename)).toString('utf8')
     await fs.unlink(versionFilename)
